@@ -30,7 +30,7 @@ before_script:
   - cd build
   # run cmake; we assume that the project's
   # top-level CMakeLists.txt is located at '..'
-  - cmake ..
+#  - cmake ..
 
 script:
 #  - mkdir build
