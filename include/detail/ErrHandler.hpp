@@ -15,7 +15,8 @@ namespace detail {
       try {
         return dynamic_cast<const std::nested_exception &>(e).nested_ptr();
       }
-      catch (const std::bad_cast &) {
+      catch (...) {
+      //catch (const std::bad_cast &) {
         return nullptr;
       }
     };
