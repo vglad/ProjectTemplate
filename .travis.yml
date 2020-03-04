@@ -16,7 +16,7 @@ script:
 #  - wget https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.bz2
 #  - tar xf boost_1_72_0.tar.bz2
   - cd build
-  - cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang ..
+  - cmake -DCMAKE_CXX_COMPILER=/usr/bin/g++-9 -DCMAKE_C_COMPILER=/usr/bin/gcc-9 ..
   - make
 #  - cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang ..
 #  - cmake --build . -- -j 4
