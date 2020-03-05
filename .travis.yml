@@ -1,15 +1,16 @@
-dist: trusty
-sudo: required
+dist: bionic
 language: cpp
+os: linux
+compiler: gcc
 
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
-    packages:
-      - gcc-9
-      - g++-9
-#      - cmake
+#    packages:
+#      - gcc-9
+#      - g++-9
+
 
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
@@ -25,18 +26,19 @@ install:
   - PATH=${DEPS_DIR}/cmake-install:${DEPS_DIR}/cmake-install/bin:$PATH
   - cd ${TRAVIS_BUILD_DIR}
 
-before_script:
-  - mkdir build
-  - cd build
+#before_script:
+#  - mkdir build
+#  - cd build
+
   # run cmake; we assume that the project's
   # top-level CMakeLists.txt is located at '..'
-#  - cmake ..
+  #  - cmake ..
 
 script:
-#  - mkdir build
+  - mkdir build
 #  - wget https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.bz2
 #  - tar xf boost_1_72_0.tar.bz2
-#  - cd build
+  - cd build
   - cmake -DCMAKE_CXX_COMPILER=/usr/bin/g++-9 -DCMAKE_C_COMPILER=/usr/bin/gcc-9 ..
   - make
 #  - cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang ..
