@@ -8,7 +8,8 @@ services:
   - docker
 env:
   global:
-    - IMAGE_NAME=vglad/centos8:gcc9
+    - IMAGE_NAME=centos:centos8
+#    - IMAGE_NAME=vglad/centos8:gcc9
 
 #addons:
 #  apt:

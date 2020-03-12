@@ -1,7 +1,7 @@
-FROM vglad/centos8:gcc9
+FROM centos:centos8
 
 #COPY requirements.txt /requirements.txt
-RUN yum upgrade;
+RUN yum check-update;
 
 #ENTRYPOINT ["hello"]
-#CMD ["uname"]
+CMD ["/bin/bash"]
