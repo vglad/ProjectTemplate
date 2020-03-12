@@ -1,9 +1,7 @@
-#dist: xenial
-#language: cpp
-#os: linux
-#compiler: gcc
+dist: xenial
+os: linux
+language: cpp
 
-sudo: required
 services:
   - docker
 env:
@@ -24,7 +22,8 @@ before_script:
 
 script:
 #  - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
-  - docker run "$IMAGE_NAME" yum upgrade
+  - docker run "$IMAGE_NAME" yum upgrade && \
+    gcc --version;
 
 after_script:
   - docker images
