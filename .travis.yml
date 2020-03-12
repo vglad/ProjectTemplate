@@ -1,65 +1,45 @@
 dist: xenial
 language: cpp
 os: linux
-#compiler: gcc
+compiler: gcc
 
-sudo: required
-services:
-  - docker
-env:
-  global:
-    - IMAGE_NAME=centos:centos8
-#    - IMAGE_NAME=vglad/centos8:gcc9
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-9
+      - g++-9
 
-#addons:
-#  apt:
-#    sources:
-#      - ubuntu-toolchain-r-test
-#    packages:
-#      - gcc-9
-#      - g++-9
 
-before_script:
-#  - version="$(sed -nE 's/^blog-travis-docker==(\S+).*/\1/p' requirements.txt)"
-  - docker pull "$IMAGE_NAME" || true
+install:
+  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
+  - mkdir ${DEPS_DIR}
+  - cd ${DEPS_DIR}
+  - travis_retry wget --no-check-certificate https://cmake.org/files/v3.16/cmake-3.16.5-Linux-x86_64.tar.gz
+
+  # extract the binaries; the output here is quite lengthy,
+  # so we swallow it to not clutter up the travis console
+  - tar -xvf cmake-3.16.5-Linux-x86_64.tar.gz > /dev/null
+  - mv cmake-3.16.5-Linux-x86_64 cmake-install
+
+  - PATH=${DEPS_DIR}/cmake-install:${DEPS_DIR}/cmake-install/bin:$PATH
+  - cd ${TRAVIS_BUILD_DIR}
+
+  #before_script:
+  #  - mkdir build
+  #  - cd build
+
+  # run cmake; we assume that the project's
+  # top-level CMakeLists.txt is located at '..'
+  #  - cmake ..
 
 script:
-#  - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
-  - docker run "$IMAGE_NAME"
-
-after_script:
-  - docker images
-
-
-#install:
-#  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
-#  - mkdir ${DEPS_DIR}
-#  - cd ${DEPS_DIR}
-#  - travis_retry wget --no-check-certificate https://cmake.org/files/v3.16/cmake-3.16.5-Linux-x86_64.tar.gz
-#
-#  # extract the binaries; the output here is quite lengthy,
-#  # so we swallow it to not clutter up the travis console
-#  - tar -xvf cmake-3.16.5-Linux-x86_64.tar.gz > /dev/null
-#  - mv cmake-3.16.5-Linux-x86_64 cmake-install
-#
-#  - PATH=${DEPS_DIR}/cmake-install:${DEPS_DIR}/cmake-install/bin:$PATH
-#  - cd ${TRAVIS_BUILD_DIR}
-
-#before_script:
-#  - mkdir build
-#  - cd build
-#
-#   run cmake; we assume that the project's
-#   top-level CMakeLists.txt is located at '..'
-#    - cmake ..
-
-#script:
-#  - mkdir build
-#  -
-##  - wget https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.bz2
-##  - tar xf boost_1_72_0.tar.bz2
-#  - cd build
-#  - cmake -DCMAKE_CXX_COMPILER=/usr/bin/g++-9 -DCMAKE_C_COMPILER=/usr/bin/gcc-9 ..
-#  - make
-##  - cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang ..
-##  - cmake --build . -- -j 4
+  - mkdir build
+  #  - wget https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.bz2
+  #  - tar xf boost_1_72_0.tar.bz2
+  - cd build
+  - cmake -DCMAKE_CXX_COMPILER=/usr/bin/g++-9 -DCMAKE_C_COMPILER=/usr/bin/gcc-9 ..
+  - make
+#  - cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang ..
+#  - cmake --build . -- -j 4
