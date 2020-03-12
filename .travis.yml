@@ -18,12 +18,12 @@ env:
 
 before_script:
 #  - version="$(sed -nE 's/^blog-travis-docker==(\S+).*/\1/p' requirements.txt)"
-  - ls -al
+  - pwd
   - docker pull "$IMAGE_NAME" || true
 
 script:
 #  - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
-  - docker run -it -v ./:./project "$IMAGE_NAME" ls
+  - docker run -it -v ./:/root/ "$IMAGE_NAME" ls
 
 after_script:
   - docker images
