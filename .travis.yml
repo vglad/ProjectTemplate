@@ -23,7 +23,7 @@ before_script:
 
 script:
 #  - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
-  - docker run -it -v ./:root/project "$IMAGE_NAME" ls
+  - docker run -it -v ./:./project "$IMAGE_NAME" ls
 
 after_script:
   - docker images
