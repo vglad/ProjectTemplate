@@ -21,11 +21,10 @@ env:
 before_script:
 #  - version="$(sed -nE 's/^blog-travis-docker==(\S+).*/\1/p' requirements.txt)"
   - docker pull "$IMAGE_NAME" || true
-  - yum upgrade
 
 script:
 #  - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
-  - docker run "$IMAGE_NAME"
+  - docker run "$IMAGE_NAME" yum upgrade
 
 after_script:
   - docker images
