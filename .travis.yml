@@ -20,16 +20,14 @@ env:
 #      - g++-9
 
 before_script:
-#  - version="$(sed -nE 's/^blog-travis-docker==(\S+).*/\1/p' requirements.txt)"
-  - pwd
   - docker pull "$IMAGE_NAME" || true
 
 script:
 #  - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
-  - docker run -it -v ${TRAVIS_BUILD_DIR}:/root/ "$IMAGE_NAME" ls
+  - docker run -v ${TRAVIS_BUILD_DIR}:/root/ "$IMAGE_NAME" ./build.sh
 
 after_script:
-  - docker images
+#  - docker images
 
 
 #install:
