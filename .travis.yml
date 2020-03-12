@@ -7,7 +7,10 @@ services:
 env:
   global:
     - IMAGE_NAME=vglad/centos8:gcc9
-
+#    - BUILD_PATH_PREFIX=/home/travis/build
+#    - REPOSITORY_USER=vglad
+#    - PROJECT_NAME=ProjectTemplate
+#    - TRAVIS_PROJECT_PATH=${TRAVIS_BUILD_DIR}
 #addons:
 #  apt:
 #    sources:
@@ -23,7 +26,7 @@ before_script:
 
 script:
 #  - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
-  - docker run -it -v ./:/root/ "$IMAGE_NAME" ls
+  - docker run -it -v ${TRAVIS_BUILD_DIR}:/root/ "$IMAGE_NAME" ls
 
 after_script:
   - docker images
