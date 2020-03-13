@@ -8,6 +8,8 @@ env:
   global:
     - IMAGE_NAME=vglad/centos8:gcc9
     - PROJECT_NAME=ProjectTemplate
+    - PROJECT_DIR=/opt/${PROJECT_NAME}
+    - BUILD_SCRIPT_NAME=build.sh
 
 #install:
 #  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
@@ -28,9 +30,10 @@ before_script:
   - docker pull "$IMAGE_NAME" || true
 
 script:
-  - docker run -t -e PROJECT_DIR=${PROJECT_NAME}
-      -v ${TRAVIS_BUILD_DIR}:/opt/${PROJECT_NAME} "$IMAGE_NAME"
-      /opt/${PROJECT_NAME}/build.sh
+  - docker run -t
+      -e PROJECT_DIR=${PROJECT_DIR}
+      -v ${TRAVIS_BUILD_DIR}:${PROJECT_DIR}
+      "${IMAGE_NAME}" ${PROJECT_DIR}/${BUILD_SCRIPT_NAME}
 
 after_script:
 #  - docker images
