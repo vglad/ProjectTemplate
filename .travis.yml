@@ -7,28 +7,7 @@ services:
 env:
   global:
     - IMAGE_NAME=vglad/centos8:gcc9
-#    - BUILD_PATH_PREFIX=/home/travis/build
-#    - REPOSITORY_USER=vglad
     - PROJECT_NAME=ProjectTemplate
-#    - TRAVIS_PROJECT_PATH=${TRAVIS_BUILD_DIR}
-#addons:
-#  apt:
-#    sources:
-#      - ubuntu-toolchain-r-test
-#    packages:
-#      - gcc-9
-#      - g++-9
-
-before_script:
-  - docker pull "$IMAGE_NAME" || true
-
-script:
-#  - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
-  - docker run -t -v ${TRAVIS_BUILD_DIR}:/opt/${PROJECT_NAME} "$IMAGE_NAME" /opt/${PROJECT_NAME}/build.sh
-
-after_script:
-#  - docker images
-
 
 #install:
 #  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
@@ -43,6 +22,20 @@ after_script:
 #
 #  - PATH=${DEPS_DIR}/cmake-install:${DEPS_DIR}/cmake-install/bin:$PATH
 #  - cd ${TRAVIS_BUILD_DIR}
+
+
+before_script:
+  - docker pull "$IMAGE_NAME" || true
+
+script:
+  - docker run -t -e PROJECT=PROJECT_NAME /
+    -v ${TRAVIS_BUILD_DIR}:/opt/${PROJECT_NAME} "$IMAGE_NAME" /
+    /opt/${PROJECT_NAME}/build.sh
+
+after_script:
+#  - docker images
+
+
 
 #before_script:
 #  - mkdir build

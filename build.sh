@@ -1,14 +1,13 @@
 #!/bin/bash
 
+BUILD_DIR=/opt/${PROJECT}/build/release
 
-RELEASE_BUILD_DIR=/opt/ProjectTemplate/build/release
-
-if [ ! -d "$RELEASE_BUILD_DIR" ]; then
-  mkdir -p $RELEASE_BUILD_DIR
+if [ ! -d "$BUILD_DIR" ]; then
+  mkdir -p $BUILD_DIR
 fi
 
-cd $RELEASE_BUILD_DIR || exit
+cd $BUILD_DIR || exit
 cmake -DCMAKE_BUILD_TYPE=Release ../..
 make
 
-$RELEASE_BUILD_DIR/tests/allTests
+$BUILD_DIR/tests/allTests
