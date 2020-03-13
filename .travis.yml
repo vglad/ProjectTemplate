@@ -28,9 +28,9 @@ before_script:
   - docker pull "$IMAGE_NAME" || true
 
 script:
-  - docker run -t -e PROJECT=PROJECT_NAME /
-    -v ${TRAVIS_BUILD_DIR}:/opt/${PROJECT_NAME} "$IMAGE_NAME" /
-    /opt/${PROJECT_NAME}/build.sh
+  - docker run -t -e PROJECT=PROJECT_NAME
+      -v ${TRAVIS_BUILD_DIR}:/opt/${PROJECT_NAME} "$IMAGE_NAME"
+      /opt/${PROJECT_NAME}/build.sh
 
 after_script:
 #  - docker images
