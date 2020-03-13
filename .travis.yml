@@ -24,7 +24,7 @@ before_script:
 
 script:
 #  - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
-  - docker run -t -v ${TRAVIS_BUILD_DIR}:/opt/${PROJECT_NAME} "$IMAGE_NAME" /opt/dev/${PROJECT_NAME}/build.sh
+  - docker run -t -v ${TRAVIS_BUILD_DIR}:/opt/${PROJECT_NAME} "$IMAGE_NAME" /opt/${PROJECT_NAME}/build.sh
 
 after_script:
 #  - docker images
