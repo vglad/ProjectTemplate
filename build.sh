@@ -3,9 +3,14 @@
 # Enable GCC 9.1.1
 source scl_source enable gcc-toolset-9
 
-[ ! -d "/root/build" ] && mkdir /root/build
-cd /root/build || exit
-cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+RELEASE_BUILD_DIR=/root/build/release
+
+if [ ! -d "$RELEASE_BUILD_DIR" ]; then
+  mkdir -p $RELEASE_BUILD_DIR
+fi
+
+cd $RELEASE_BUILD_DIR || exit
+cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ../..
 make
 
-/root/build/tests/allTests
+$RELEASE_BUILD_DIR/tests/allTests
