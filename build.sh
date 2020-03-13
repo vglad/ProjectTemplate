@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BUILD_DIR=/opt/${PROJECT}/build/release
+BUILD_DIR=/opt/${PROJECT_DIR}/build/release
 
 if [ ! -d "$BUILD_DIR" ]; then
   mkdir -p $BUILD_DIR
