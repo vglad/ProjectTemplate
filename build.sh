@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-RELEASE_BUILD_DIR=/opt/${PROJECT_NAME}/build/release
+RELEASE_BUILD_DIR=/opt/ProjectTemplate/build/release
 
 if [ ! -d "$RELEASE_BUILD_DIR" ]; then
   mkdir -p $RELEASE_BUILD_DIR
