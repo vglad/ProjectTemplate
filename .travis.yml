@@ -8,27 +8,6 @@ env:
   - COMPILER='gcc'   IMAGE_NAME=vglad/centos8:gcc9
   - COMPILER='clang' IMAGE_NAME=vglad/centos8:clang8
 
-#env:
-#  - IMAGE_NAME=vglad/centos8:gcc9 COMPILER='gcc' PROJECT_NAME='ProjectTemplate' PROJECT_DIR=/opt/${PROJECT_NAME} BUILD_SCRIPT_NAME=build.sh
-#  - IMAGE_NAME=vglad/centos8:clang8 COMPILER='clang' PROJECT_NAME='ProjectTemplate' PROJECT_DIR=/opt/${PROJECT_NAME} BUILD_SCRIPT_NAME=build.sh
-
-#jobs:
-#  include:
-
-    # GCC 9 compiler
-
-
-#    - env: IMAGE_NAME='vglad/centos8:gcc9' COMPILER='gcc'
-#      PROJECT_NAME='ProjectTemplate' PROJECT_DIR='/opt/${PROJECT_NAME}'
-#      BUILD_SCRIPT_NAME='build.sh'
-
-
-    # Clang8 compiler
-#    - env: IMAGE_NAME='vglad/centos8:clang8' COMPILER='clang'
-#      PROJECT_NAME='ProjectTemplate' PROJECT_DIR='/opt/${PROJECT_NAME}'
-#      BUILD_SCRIPT_NAME='build.sh'
-
-
 #install:
 #  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
 #  - mkdir ${DEPS_DIR}
@@ -45,8 +24,8 @@ env:
 
 
 before_script:
-  - docker pull "$IMAGE_NAME" || true
-  - export PROJECT_NAME='ProjectTemplate'
+  - docker pull ${IMAGE_NAME} || true
+  - export PROJECT_NAME=ProjectTemplate
   - export PROJECT_DIR=/opt/${PROJECT_NAME}
   - export BUILD_SCRIPT_NAME=build.sh
 
@@ -54,20 +33,7 @@ script:
   - docker run -t
       -e DOCKER=1 -e PROJECT_DIR=${PROJECT_DIR} -e COMPILER=${COMPILER}
       -v ${TRAVIS_BUILD_DIR}:${PROJECT_DIR}
-      "${IMAGE_NAME}" ${PROJECT_DIR}/${BUILD_SCRIPT_NAME}
-
-#after_script:
-#  - docker images
-
-
-
-#before_script:
-#  - mkdir build
-#  - cd build
-#
-#   run cmake; we assume that the project's
-#   top-level CMakeLists.txt is located at '..'
-#    - cmake ..
+      ${IMAGE_NAME} ${PROJECT_DIR}/${BUILD_SCRIPT_NAME}
 
 #script:
 #  - mkdir build
