@@ -6,21 +6,26 @@ services: docker
 notifications:
   email: false
 
-jobs:
-  include:
+env:
+  global:
+    IMAGE_NAME='vglad/centos8:clang8' COMPILER='clang' PROJECT_NAME='ProjectTemplate' PROJECT_DIR='/opt/${PROJECT_NAME}' BUILD_SCRIPT_NAME='build.sh'
+
+
+#jobs:
+#  include:
 
     # GCC 9 compiler
 
 
-    - env: IMAGE_NAME='vglad/centos8:gcc9' COMPILER='gcc'
-      PROJECT_NAME='ProjectTemplate' PROJECT_DIR='/opt/${PROJECT_NAME}'
-      BUILD_SCRIPT_NAME='build.sh'
+#    - env: IMAGE_NAME='vglad/centos8:gcc9' COMPILER='gcc'
+#      PROJECT_NAME='ProjectTemplate' PROJECT_DIR='/opt/${PROJECT_NAME}'
+#      BUILD_SCRIPT_NAME='build.sh'
 
 
     # Clang8 compiler
-    - env: IMAGE_NAME='vglad/centos8:clang8' COMPILER='clang'
-      PROJECT_NAME='ProjectTemplate' PROJECT_DIR='/opt/${PROJECT_NAME}'
-      BUILD_SCRIPT_NAME='build.sh'
+#    - env: IMAGE_NAME='vglad/centos8:clang8' COMPILER='clang'
+#      PROJECT_NAME='ProjectTemplate' PROJECT_DIR='/opt/${PROJECT_NAME}'
+#      BUILD_SCRIPT_NAME='build.sh'
 
 
 #install:
