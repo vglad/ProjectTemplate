@@ -1,27 +1,27 @@
+os: linux
+dist: xenial
 language: cpp
+services: docker
 
-matrix:
+notifications:
+  email: false
+
+jobs:
   include:
 
     # GCC 9 compiler
-    - os: linux
-      dist: xenial
-      services: docker
-      env: IMAGE_NAME='vglad/centos8:gcc9' COMPILER='gcc'
+
+
+    - env: IMAGE_NAME='vglad/centos8:gcc9' COMPILER='gcc'
       PROJECT_NAME='ProjectTemplate' PROJECT_DIR='/opt/${PROJECT_NAME}'
       BUILD_SCRIPT_NAME='build.sh'
 
 
     # Clang8 compiler
-    - os: linux
-      dist: xenial
-      services: docker
-      env: IMAGE_NAME='vglad/centos8:clang8' COMPILER='clang'
+    - env: IMAGE_NAME='vglad/centos8:clang8' COMPILER='clang'
       PROJECT_NAME='ProjectTemplate' PROJECT_DIR='/opt/${PROJECT_NAME}'
       BUILD_SCRIPT_NAME='build.sh'
 
-notifications:
-  email: false
 
 #install:
 #  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
