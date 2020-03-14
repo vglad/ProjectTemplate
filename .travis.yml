@@ -1,15 +1,29 @@
-dist: xenial
-os: linux
-language: cpp
+notifications:
+  email: false
 
-services:
-  - docker
-env:
-  global:
-    - IMAGE_NAME=vglad/centos8:gcc9
-    - PROJECT_NAME=ProjectTemplate
-    - PROJECT_DIR=/opt/${PROJECT_NAME}
-    - BUILD_SCRIPT_NAME=build.sh
+matrix:
+  include:
+
+    # GCC 9 compiler
+    - os: linux
+      dist: xenial
+      language: cpp
+      services: docker
+      env: IMAGE_NAME='vglad/centos8:gcc9' COMPILER='gcc'
+      PROJECT_NAME='ProjectTemplate' PROJECT_DIR='/opt/${PROJECT_NAME}'
+      BUILD_SCRIPT_NAME='build.sh'
+
+
+    # Clang8 compiler
+    - os: linux
+      dist: xenial
+      language: cpp
+      services: docker
+      env: IMAGE_NAME='vglad/centos8:clang8' COMPILER='clang'
+      PROJECT_NAME='ProjectTemplate' PROJECT_DIR='/opt/${PROJECT_NAME}'
+      BUILD_SCRIPT_NAME='build.sh'
+
+
 
 #install:
 #  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
@@ -31,11 +45,11 @@ before_script:
 
 script:
   - docker run -t
-      -e PROJECT_DIR=${PROJECT_DIR}
+      -e DOCKER=1 PROJECT_DIR=${PROJECT_DIR} COMPILER=${COMPILER}
       -v ${TRAVIS_BUILD_DIR}:${PROJECT_DIR}
       "${IMAGE_NAME}" ${PROJECT_DIR}/${BUILD_SCRIPT_NAME}
 
-after_script:
+#after_script:
 #  - docker images
 
 
