@@ -1,11 +1,9 @@
 os: linux
+dist: xenial
 language: cpp
 
-services: docker
-
-
-dist:
-  - xenial
+services:
+  - docker
 env:
   - IMAGE_NAME=vglad/centos8:gcc9 COMPILER='gcc' PROJECT_NAME='ProjectTemplate' PROJECT_DIR=/opt/${PROJECT_NAME} BUILD_SCRIPT_NAME=build.sh
   - IMAGE_NAME=vglad/centos8:clang8 COMPILER='clang' PROJECT_NAME='ProjectTemplate' PROJECT_DIR=/opt/${PROJECT_NAME} BUILD_SCRIPT_NAME=build.sh
