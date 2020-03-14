@@ -48,7 +48,7 @@ before_script:
 
 script:
   - docker run -t
-      -e DOCKER=1 PROJECT_DIR=${PROJECT_DIR} COMPILER=${COMPILER}
+      -e DOCKER=1 -e PROJECT_DIR=${PROJECT_DIR} -e COMPILER=${COMPILER}
       -v ${TRAVIS_BUILD_DIR}:${PROJECT_DIR}
       "${IMAGE_NAME}" ${PROJECT_DIR}/${BUILD_SCRIPT_NAME}
 
