@@ -1,15 +1,18 @@
-cmake_minimum_required (VERSION 3.15)
+cmake_minimum_required (VERSION 3.12)
 project(Project)
 
-if (MSVC)
-    # warning level 4 and all warnings as errors
-    string(REGEX REPLACE "/W3" "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
-    string(REGEX REPLACE "-W3" "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
-    add_compile_options(/W4 /WX)
-else()
-    # lots of warnings and all warnings as errors
-    add_compile_options(-Wall -Wextra -pedantic -Werror)
-endif()
+set_property(GLOBAL PROPERTY
+    CXX_STANDARD 17
+    CXX_STANDARD_REQUIRED ON
+    CXX_EXTENSIONS OFF)
+
+set (msvc_flags /W4 /WX)
+set (gnu_clang_flags -Wall -Wextra -pedantic -Werror)
+
+add_compile_options(
+    "$<$<CXX_COMPILER_ID:MSVC>:${msvc_flags}>"
+    "$<$<CXX_COMPILER_ID:GNU,Clang>:${gnu_clang_flags}>"
+)
 
 add_subdirectory(thirdparty/catch2)
 add_subdirectory(src/lib)
