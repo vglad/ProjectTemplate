@@ -15,7 +15,6 @@ PROJECT_DIR=/opt/dev/ProjectTemplate
 BUILD_TYPE=release
 BUILD_DIR=${PROJECT_DIR}/build/cmake-build-${BUILD_TYPE}
 BUILD_TESTS=ON
-#COMPILER="g++"
 
 # Variables for tests dependencies
 #NO_CATCH2_DOWNLOAD=OFF
@@ -23,10 +22,15 @@ BUILD_TESTS=ON
 
 [[ ! -d "${BUILD_DIR}" ]] && ( mkdir -p ${BUILD_DIR} || return 1 )
 
+# Declare compiler here. Options: [g++|clang++-8].
+[ ! ${COMPILER} ] && COMPILER="clang++-8"
+
 case ${COMPILER} in
   g++) export CC='gcc'; export CXX='g++';;
   clang++-8) export CC='clang-8'; export CXX='clang++-8';;
-  *) echo "Error! Undefined compiler [${COMPILER}]"; exit 1;;
+  *) echo -e "Error! Undefined compiler [${COMPILER}]." \
+             "\nPlease specify compiler in COMPILER variable in build script." \
+             "\nOptions: [g++|clang++-8]."; exit 1;;
 esac
 
 # Set compiler flags
