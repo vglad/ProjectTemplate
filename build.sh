@@ -23,7 +23,7 @@ BUILD_TESTS=ON
 [[ ! -d "${BUILD_DIR}" ]] && ( mkdir -p ${BUILD_DIR} || return 1 )
 
 # Declare compiler here. Options: [g++|clang++-8].
-[ ! ${COMPILER} ] && COMPILER="clang++-8"
+[ ! "${COMPILER}" ] && COMPILER="clang++-8"
 
 case ${COMPILER} in
   g++) export CC='gcc'; export CXX='g++';;
