@@ -40,11 +40,11 @@ if (NOT NO_TROMPELOEIL_DOWNLOAD)
   # Download "Trompeloeil" dependency
   message(STATUS "Downloading Trompeloeil ...")
   set(trompeloeil_files
-      ${CMAKE_CURRENT_SOURCE_DIR}/third_party/trompeloeil.hpp
-      ${CMAKE_CURRENT_SOURCE_DIR}/third_party/catch2/trompeloeil.hpp)
+      "${CMAKE_CURRENT_SOURCE_DIR}/third_party/trompeloeil.hpp"
+      "${CMAKE_CURRENT_SOURCE_DIR}/third_party/catch2/trompeloeil.hpp")
   set(trompeloeil_source_urls
-      https://raw.githubusercontent.com/rollbear/trompeloeil/master/include/trompeloeil.hpp
-      https://raw.githubusercontent.com/rollbear/trompeloeil/master/include/catch2/trompeloeil.hpp)
+      "https://raw.githubusercontent.com/rollbear/trompeloeil/master/include/trompeloeil.hpp"
+      "https://raw.githubusercontent.com/rollbear/trompeloeil/master/include/catch2/trompeloeil.hpp")
   foreach(file url IN ZIP_LISTS trompeloeil_files trompeloeil_source_urls)
     if (NOT EXISTS ${file})
       file(DOWNLOAD ${url}

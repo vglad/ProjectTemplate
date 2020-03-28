@@ -6,7 +6,7 @@ dist: xenial
 services:
   - docker
 env:
-  - COMPILER='gcc-9'   IMAGE_NAME=vglad/centos8:gcc9
+  - COMPILER='g++'   IMAGE_NAME=vglad/centos8:gcc9
   - COMPILER='clang-8' IMAGE_NAME=vglad/centos8:clang8
 
 #install:
