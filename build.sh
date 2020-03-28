@@ -12,7 +12,7 @@ fi
 
 # Set variables
 PROJECT_DIR=/opt/dev/ProjectTemplate
-BUILD_TYPE=debug
+BUILD_TYPE=release
 BUILD_DIR=${PROJECT_DIR}/build/cmake-build-${BUILD_TYPE}
 BUILD_TESTS=ON
 #COMPILER="g++"

@@ -7,7 +7,7 @@ services:
   - docker
 env:
   - COMPILER='g++'   IMAGE_NAME=vglad/centos8:gcc9
-  - COMPILER='clang-8' IMAGE_NAME=vglad/centos8:clang8
+  - COMPILER='clang++-8' IMAGE_NAME=vglad/centos8:clang8
 
 #install:
 #  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"

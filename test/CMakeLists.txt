@@ -34,6 +34,7 @@ if (NOT NO_CATCH2_DOWNLOAD)
   add_library(Catch2 INTERFACE)
   target_include_directories(Catch2 INTERFACE ${catch_include_dir})
   set(catch2 Catch2)
+  message(STATUS "Catch2 dependency prepared.")
 endif ()
 
 if (NOT NO_TROMPELOEIL_DOWNLOAD)
@@ -73,6 +74,7 @@ if (NOT NO_TROMPELOEIL_DOWNLOAD)
   add_library(Trompeloeil INTERFACE)
   target_include_directories(Trompeloeil INTERFACE ${trompeloeil_include_dir})
   set(trompeloeil Trompeloeil)
+  message(STATUS "Trompeloeil dependency prepared.")
 endif ()
 
  # Make tests executable
