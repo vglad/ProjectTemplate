@@ -27,8 +27,12 @@ bld/
 # Visual Studio 2019 CMake build directory
 [Oo]ut/
 
-# CLion 2019 cmake build directory
-cmake-build-debug/
+# CLion 2019 cmake build directories
+cmake-build*/
+build*/
+
+# Tests dependency
+test/third_party/
 
 # Visual Studio 2019 CMake settings json file
 # Ignored to port project to CLion on linux PC

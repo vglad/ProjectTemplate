@@ -1,35 +1,43 @@
 #!/bin/bash
 
-# Set project directory if building without Docker
-if [[ ${DOCKER} -eq 0 ]]; then
-  PROJECT_DIR=/opt/dev/ProjectTemplate
+if [[ ( "$1" == "-h" ) || ( "$1" == "--help" ) ]]; then
+    echo "Usage: `basename $0` [-h]"
+    echo "  Build the project"
+    echo
+    echo "  -h, --help           Show this help text"
+    echo "  --build_type         Can be one of [debug, release], default=debug"
+    echo "  --build_tests        Can be one of [OFF, ON], default=OFF"
+    exit 0
 fi
 
-cd ${PROJECT_DIR} || return 1
-BUILD_DIR=${PROJECT_DIR}/build/cmake-build-release
+# Set variables
+PROJECT_DIR=/opt/dev/ProjectTemplate
+BUILD_TYPE=debug
+BUILD_DIR=${PROJECT_DIR}/build/cmake-build-${BUILD_TYPE}
+BUILD_TESTS=ON
+#COMPILER="g++"
 
-if [ ! -d "${BUILD_DIR}" ]; then
-  mkdir -p ${BUILD_DIR}
-fi
+# Variables for tests dependencies
+#NO_CATCH2_DOWNLOAD=OFF
+#NO_TROMPELOEIL_DOWNLOAD=OFF
+
+[[ ! -d "${BUILD_DIR}" ]] && ( mkdir -p ${BUILD_DIR} || return 1 )
+
+case ${COMPILER} in
+  g++) export CC='gcc'; export CXX='g++';;
+  clang++-8) export CC='clang-8'; export CXX='clang++-8';;
+  *) echo "Error! Undefined compiler [${COMPILER}]"; exit 1;;
+esac
+
+# Set compiler flags
+COMPILER_FLAGS="-Wall -Wextra -Wpedantic -Werror"
 
 cd ${BUILD_DIR} || return 1
+cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
+      -DCMAKE_CXX_COMPILER=${CXX} -DCMAKE_C_COMPILER=${CC} \
+      -DCMAKE_CXX_FLAGS:STRING="${COMPILER_FLAGS}" \
+      -DBUILD_TESTS=${BUILD_TESTS} ../..
+cmake --build . -- -j "$(nproc)"
 
-if [[ ${DOCKER} -eq 1 ]] && [[ "${COMPILER}" == "gcc" ]]; then
-  export CC='gcc'
-  export CXX='g++'
-elif [[ ${DOCKER} -eq 1 ]] && [[ "${COMPILER}" == "clang" ]]; then
-  export CC='clang'
-  export CXX='clang++'
-fi
-
-# Set compiler if building without Docker
-if [[ ${DOCKER} -eq 0 ]]; then
-  export CC='gcc'
-  export CXX='g++'
-fi
-
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=${CXX} -DCMAKE_C_COMPILER=${CC} ../..
-make
-
-# Run tests
-${BUILD_DIR}/tests/allTests
+# Run tests if they built
+[[ ${BUILD_TESTS} == ON ]] && ${BUILD_DIR}/test/tests
