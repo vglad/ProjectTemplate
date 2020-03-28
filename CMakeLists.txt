@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.12)
+cmake_minimum_required (VERSION 3.17)
 project(Project LANGUAGES CXX)
 
 option(BUILD_TESTS "Build the unit tests" ON)
@@ -9,7 +9,6 @@ set_property(GLOBAL PROPERTY
     CXX_STANDARD_REQUIRED ON
     CXX_EXTENSIONS OFF)
 
-#add_subdirectory(thirdparty/catch2)
 add_subdirectory(src/lib)
 add_subdirectory(src)
 

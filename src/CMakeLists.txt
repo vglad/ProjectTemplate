@@ -1,12 +1,9 @@
-cmake_minimum_required (VERSION 3.12)
+cmake_minimum_required (VERSION 3.17)
 project(Main)
 
-#set(CMAKE_CXX_STANDARD 17)
-#set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(source_files main.cpp)
 
-set(SOURCE_FILES main.cpp)
-
-add_executable(main ${SOURCE_FILES})
+add_executable(main ${source_files})
 target_link_libraries(main PRIVATE lib)
 target_include_directories(main PRIVATE
     ../include/detail

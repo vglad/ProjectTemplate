@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.14)
+cmake_minimum_required (VERSION 3.17)
 project(tests LANGUAGES CXX)
 
 option(NO_CATCH2_DOWNLOAD "Do not download Catch2" OFF)

@@ -1,10 +1,7 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.17)
 project(Lib)
 
-#set(CMAKE_CXX_STANDARD 17)
-#set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(source_files ../../include/lib/lib.hpp lib.cpp)
 
-set(SOURCE_FILES ../../include/lib/lib.hpp lib.cpp)
-
-add_library(lib STATIC ${SOURCE_FILES})
+add_library(lib STATIC ${source_files})
 target_include_directories(lib PRIVATE ../../include/detail ../../include/lib)
