@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.com/vglad/ProjectTemplate.svg?branch=master)](https://travis-ci.com/vglad/ProjectTemplate)
 
 # ProjectTemplate
-Template for C++ project with Cmake.
+Template for C++ project with CMake.
 
 Catch2 and Trompeloeil used as testing frameworks.
 
