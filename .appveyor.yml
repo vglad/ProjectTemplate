@@ -1,0 +1,35 @@
+image:
+  - Visual Studio 2017
+  - Visual Studio 2019
+
+branches:
+  only:
+  - master
+
+configuration: Release
+
+platform:
+  - x64
+
+install:
+#call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
+
+-  ps: |
+
+     if (![IO.File]::Exists("C:\ninja-1.8.2\ninja.exe")) {
+       Start-FileDownload 'https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-win.zip'
+       7z x -y ninja-win.zip -oC:\ninja-1.8.2
+     }
+     $env:PATH="C:\ninja-1.8.2;$env:PATH"
+
+-  call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
+#-  for /f "tokens=1* delims=" %%i in ('"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath') do call "%%i\VC\Auxiliary\Build\vcvarsall.bat" %PLATFORM:x86=x64_x86% &&
+-  ninja --version
+
+cache: C:\ninja-1.8.2
+
+build_script:
+-  mkdir cmake-build
+-  cd cmake-build
+-  cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug
+-  cmake --build . --target Project
