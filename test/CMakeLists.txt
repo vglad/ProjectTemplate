@@ -15,17 +15,17 @@ if (NOT NO_CATCH2_DOWNLOAD)
         INACTIVITY_TIMEOUT 10
         STATUS status
         LOG log
-        )
+    )
 
     list(GET status 0 status_code)
     list(GET status 1 status_string)
     if(NOT status_code EQUAL 0)
       message(FATAL_ERROR "ERROR: downloading
-      'https://raw.githubusercontent.com/catchorg/Catch2/master/single_include/catch2/catch.hpp' failed
-      status_code: ${status_code}
-      status_string: ${status_string}
-      log: ${log}"
-          )
+              'https://raw.githubusercontent.com/catchorg/Catch2/master/single_include/catch2/catch.hpp' failed
+              status_code: ${status_code}
+              status_string: ${status_string}
+              log: ${log}"
+             )
     endif()
   endif ()
 
@@ -42,10 +42,13 @@ if (NOT NO_TROMPELOEIL_DOWNLOAD)
   message(STATUS "Downloading Trompeloeil ...")
   set(trompeloeil_files
       "${CMAKE_CURRENT_SOURCE_DIR}/third_party/trompeloeil.hpp"
-      "${CMAKE_CURRENT_SOURCE_DIR}/third_party/catch2/trompeloeil.hpp")
+      "${CMAKE_CURRENT_SOURCE_DIR}/third_party/catch2/trompeloeil.hpp"
+  )
   set(trompeloeil_source_urls
       "https://raw.githubusercontent.com/rollbear/trompeloeil/master/include/trompeloeil.hpp"
-      "https://raw.githubusercontent.com/rollbear/trompeloeil/master/include/catch2/trompeloeil.hpp")
+      "https://raw.githubusercontent.com/rollbear/trompeloeil/master/include/catch2/trompeloeil.hpp"
+  )
+  
   foreach(file url IN ZIP_LISTS trompeloeil_files trompeloeil_source_urls)
     if (NOT EXISTS ${file})
       file(DOWNLOAD ${url}
@@ -53,7 +56,7 @@ if (NOT NO_TROMPELOEIL_DOWNLOAD)
           INACTIVITY_TIMEOUT 10
           STATUS status
           LOG log
-          )
+      )
 
       list(GET status 0 status_code)
       list(GET status 1 status_string)
@@ -64,7 +67,7 @@ if (NOT NO_TROMPELOEIL_DOWNLOAD)
                 status_code: ${status_code}
                 status_string: ${status_string}
                 log: ${log}"
-                )
+        )
       endif()
     endif()
   endforeach()
