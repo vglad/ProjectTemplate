@@ -12,7 +12,6 @@ platform:
   - x64
 
 install:
-#call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
 
 -  ps: |
 
@@ -28,11 +27,9 @@ install:
      }
      $env:PATH="C:\cmake-3.17.0;$env:PATH"
 
-
-#-  call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
 -  for /f "tokens=1* delims=" %%i in ('"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath') do call "%%i\VC\Auxiliary\Build\vcvarsall.bat" %PLATFORM:x86=x64_x86%
 -  ninja --version
--  cmake --version
+-  C:\cmake-3.17.0\cmake.exe --version
 
 cache: 
   - C:\ninja-1.8.2
@@ -41,5 +38,5 @@ cache:
 build_script:
 -  mkdir cmake-build
 -  cd cmake-build
--  cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug
--  cmake --build . --target Project
+-  C:\cmake-3.17.0\cmake.exe .. -G Ninja -DCMAKE_BUILD_TYPE=Debug
+-  C:\cmake-3.17.0\cmake.exe --build . --target Project
