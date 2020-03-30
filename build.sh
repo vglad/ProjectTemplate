@@ -65,4 +65,4 @@ cmake --build . -- -j "$(nproc)"
 
 
 # Run tests if they built
-[[ ${BUILD_TESTS} == ON ]] && ${BUILD_DIR}/test/tests
+[[ ${SKIP_TESTS} == OFF ]] && ${BUILD_DIR}/test/tests
