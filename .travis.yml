@@ -6,8 +6,8 @@ dist: xenial
 services:
   - docker
 env:
-  - COMPILER='g++'       IMAGE_NAME=vglad/centos8:gcc9
-  - COMPILER='clang++-8' IMAGE_NAME=vglad/centos8:clang8
+  - COMPILER='gcc'       IMAGE_NAME=vglad/centos8:gcc9
+  - COMPILER='clang-8'   IMAGE_NAME=vglad/centos8:clang8
 
 before_script:
   - docker pull ${IMAGE_NAME} || true

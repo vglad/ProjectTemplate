@@ -1,10 +1,10 @@
 cmake_minimum_required (VERSION 3.17)
 project(tests LANGUAGES CXX)
 
-option(NO_CATCH2_DOWNLOAD "Do not download Catch2" OFF)
-option(NO_TROMPELOEIL_DOWNLOAD "Do not download Trompeloeil" OFF)
+option(SKIP_CATCH2_DOWNLOAD "Do not download Catch2" OFF)
+option(SKIP_TROMPELOEIL_DOWNLOAD "Do not download Trompeloeil" OFF)
 
-if (NOT NO_CATCH2_DOWNLOAD)
+if (NOT SKIP_CATCH2_DOWNLOAD)
   # Download "Catch2" dependency
   message(STATUS "Downloading Catch2 ...")
   set(catch_header "${CMAKE_CURRENT_SOURCE_DIR}/third_party/catch2/catch.hpp")
@@ -37,7 +37,7 @@ if (NOT NO_CATCH2_DOWNLOAD)
   message(STATUS "Catch2 dependency prepared.")
 endif ()
 
-if (NOT NO_TROMPELOEIL_DOWNLOAD)
+if (NOT SKIP_TROMPELOEIL_DOWNLOAD)
   # Download "Trompeloeil" dependency
   message(STATUS "Downloading Trompeloeil ...")
   set(trompeloeil_files
