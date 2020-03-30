@@ -29,7 +29,7 @@ install:
 
 -  for /f "tokens=1* delims=" %%i in ('"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath') do call "%%i\VC\Auxiliary\Build\vcvarsall.bat" %PLATFORM:x86=x64_x86%
 -  ninja --version
--  ls ..\..\cmake-3.17.0
+-  ls ..\..
 -  pwd
 -  cmd /c "C:\cmake-3.17.0\bin\cmake.exe" --version 
 
