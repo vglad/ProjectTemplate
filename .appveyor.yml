@@ -10,6 +10,7 @@ configuration: Release
 
 platform:
   - x64
+  - x32
 
 install:
 
