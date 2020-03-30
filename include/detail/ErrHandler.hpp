@@ -1,7 +1,7 @@
 #ifndef PROJECT_INCLUDE_DETAIL_ERRHANDLER_HPP
 #define PROJECT_INCLUDE_DETAIL_ERRHANDLER_HPP
 
-#include <ostream>
+#include <string>
 #include <iostream>
 
 
