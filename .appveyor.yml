@@ -20,23 +20,22 @@ install:
        7z x -y ninja-win.zip -oC:\ninja-1.8.2
      }
      $env:PATH="C:\ninja-1.8.2;$env:PATH"
+     ninja --version
 
      if (![IO.File]::Exists("C:\cmake-3.17.0\bin\cmake.exe")) {
        Start-FileDownload 'https://github.com/Kitware/CMake/releases/download/v3.17.0/cmake-3.17.0-win64-x64.zip'
        7z x -y cmake-3.17.0-win64-x64.zip -oC:\cmake-3.17.0
 
      }
+     
+     move ..\..\cmake-3.17.0\cmake-3.17.0-win64-x64\bin ..\..\cmake-3.17.0
+     move ..\..\cmake-3.17.0\cmake-3.17.0-win64-x64\share ..\..\cmake-3.17.0
+     move ..\..\cmake-3.17.0\cmake-3.17.0-win64-x64\man ..\..\cmake-3.17.0
+     move ..\..\cmake-3.17.0\cmake-3.17.0-win64-x64\doc ..\..\cmake-3.17.0
      $env:PATH="C:\cmake-3.17.0\bin;$env:PATH"
+     cmake --version
 
 -  for /f "tokens=1* delims=" %%i in ('"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath') do call "%%i\VC\Auxiliary\Build\vcvarsall.bat" %PLATFORM:x86=x64_x86%
--  ninja --version
--  ls ..\..\cmake-3.17.0
--  pwd
--  move ..\..\cmake-3.17.0\cmake-3.17.0-win64-x64\bin ..\..\cmake-3.17.0
--  move ..\..\cmake-3.17.0\cmake-3.17.0-win64-x64\share ..\..\cmake-3.17.0
--  move ..\..\cmake-3.17.0\cmake-3.17.0-win64-x64\man ..\..\cmake-3.17.0
--  move ..\..\cmake-3.17.0\cmake-3.17.0-win64-x64\doc ..\..\cmake-3.17.0
--  cmd /c "C:\cmake-3.17.0\bin\cmake.exe" --version 
 
 cache: 
   - C:\ninja-1.8.2
@@ -45,5 +44,5 @@ cache:
 build_script:
 -  mkdir cmake-build
 -  cd cmake-build
--  cmd /c "C:\cmake-3.17.0\bin\cmake.exe" .. -G Ninja -DCMAKE_BUILD_TYPE=Debug
--  cmd /c "C:\cmake-3.17.0\bin\cmake.exe" --build . --target Project
+-  "C:\cmake-3.17.0\bin\cmake.exe" .. -G Ninja -DCMAKE_BUILD_TYPE=Debug
+-  cmd /c "C:\cmake-3.17.0\bin\cmake.exe" --build .
