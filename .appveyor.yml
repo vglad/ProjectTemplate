@@ -25,11 +25,11 @@ install:
        Start-FileDownload 'https://github.com/Kitware/CMake/releases/download/v3.17.0/cmake-3.17.0-win64-x64.zip'
        7z x -y cmake-3.17.0-win64-x64.zip -oC:\cmake-3.17.0
      }
-     $env:PATH="C:\cmake-3.17.0;$env:PATH"
+     $env:PATH="C:\cmake-3.17.0\bin;$env:PATH"
 
 -  for /f "tokens=1* delims=" %%i in ('"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath') do call "%%i\VC\Auxiliary\Build\vcvarsall.bat" %PLATFORM:x86=x64_x86%
 -  ninja --version
--  C:\cmake-3.17.0\cmake.exe --version
+-  cmake --version
 
 cache: 
   - C:\ninja-1.8.2
@@ -38,5 +38,5 @@ cache:
 build_script:
 -  mkdir cmake-build
 -  cd cmake-build
--  C:\cmake-3.17.0\cmake.exe .. -G Ninja -DCMAKE_BUILD_TYPE=Debug
--  C:\cmake-3.17.0\cmake.exe --build . --target Project
+-  cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug
+-  cmake --build . --target Project
