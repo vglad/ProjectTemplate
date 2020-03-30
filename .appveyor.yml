@@ -1,5 +1,4 @@
 image:
-  - Visual Studio 2017
   - Visual Studio 2019
 
 branches:
@@ -20,6 +19,7 @@ install:
        7z x -y ninja-win.zip -oC:\ninja-1.8.2
      }
      $env:PATH="C:\ninja-1.8.2;$env:PATH"
+     echo "Ninja version"
      ninja --version
 
      if (![IO.File]::Exists("C:\cmake-3.17.0\bin\cmake.exe")) {
@@ -44,5 +44,5 @@ cache:
 build_script:
 -  mkdir cmake-build
 -  cd cmake-build
--  cmd /c "C:\cmake-3.17.0\bin\cmake.exe" .. -G Ninja -DCMAKE_BUILD_TYPE=Debug
--  cmd /c "C:\cmake-3.17.0\bin\cmake.exe" --build .
+-  cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug
+-  cmake --build .
