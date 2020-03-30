@@ -23,7 +23,7 @@ install:
 
      if (![IO.File]::Exists("C:\cmake-3.17.0\bin\cmake.exe")) {
        Start-FileDownload 'https://github.com/Kitware/CMake/releases/download/v3.17.0/cmake-3.17.0-win64-x64.zip'
-       7z x -y cmake-3.17.0-win64-x64.zip -oC:\cmake-3.17.0
+       7z x -y cmake-3.17.0-win64-x64.zip -oC:\cmake-3.17.0 cmake-3.17.0-win64-x64\*.*
      }
      $env:PATH="C:\cmake-3.17.0\bin;$env:PATH"
 
