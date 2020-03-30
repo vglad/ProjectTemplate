@@ -44,5 +44,5 @@ cache:
 build_script:
 -  mkdir cmake-build
 -  cd cmake-build
--  cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug
+-  cmake -G Ninja -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON ..
 -  cmake --build .
