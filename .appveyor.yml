@@ -29,9 +29,9 @@ install:
 
 -  for /f "tokens=1* delims=" %%i in ('"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath') do call "%%i\VC\Auxiliary\Build\vcvarsall.bat" %PLATFORM:x86=x64_x86%
 -  ninja --version
--  ls ..
+-  ls ..\..
 -  pwd
--  C:\cmake-3.17.0\bin\cmake.exe --version
+-  "C:\cmake-3.17.0\bin\cmake.exe" --version
 
 cache: 
   - C:\ninja-1.8.2
@@ -40,5 +40,5 @@ cache:
 build_script:
 -  mkdir cmake-build
 -  cd cmake-build
--  C:\cmake-3.17.0\bin\cmake.exe .. -G Ninja -DCMAKE_BUILD_TYPE=Debug
--  C:\cmake-3.17.0\bin\cmake.exe --build . --target Project
+-  "C:\cmake-3.17.0\bin\cmake.exe" .. -G Ninja -DCMAKE_BUILD_TYPE=Debug
+-  "C:\cmake-3.17.0\bin\cmake.exe" --build . --target Project
