@@ -14,14 +14,6 @@ install:
 
 -  ps: |
 
-     if (![IO.File]::Exists("C:\ninja-1.8.2\ninja.exe")) {
-       Start-FileDownload 'https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-win.zip'
-       7z x -y ninja-win.zip -oC:\ninja-1.8.2
-     }
-     $env:PATH="C:\ninja-1.8.2;$env:PATH"
-     echo "Ninja version"
-     ninja --version
-
      if (![IO.File]::Exists("C:\cmake-3.17.0\bin\cmake.exe")) {
        Start-FileDownload 'https://github.com/Kitware/CMake/releases/download/v3.17.0/cmake-3.17.0-win64-x64.zip'
        7z x -y cmake-3.17.0-win64-x64.zip -oC:\cmake-3.17.0
@@ -36,7 +28,6 @@ install:
 -  for /f "tokens=1* delims=" %%i in ('"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath') do call "%%i\VC\Auxiliary\Build\vcvarsall.bat" %PLATFORM:x86=x64_x86%
 
 cache: 
-  - C:\ninja-1.8.2
   - C:\cmake-3.17.0
 
 build_script:
