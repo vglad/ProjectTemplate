@@ -31,7 +31,7 @@ install:
 -  ninja --version
 -  ls ..\..
 -  pwd
--  "C:\cmake-3.17.0\bin\cmake.exe" --version
+-  '"C:\cmake-3.17.0\bin\cmake.exe"' --version
 
 cache: 
   - C:\ninja-1.8.2
