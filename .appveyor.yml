@@ -30,7 +30,7 @@ cache:
   - C:\cmake-3.17.0
 
 build_script:
-  -  .\build.ps1
+- ps: .\build.ps1
   #-  mkdir cmake-build
   #-  cd cmake-build
   #-  cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON ..
