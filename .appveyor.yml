@@ -24,13 +24,7 @@ install:
      cmake --version
 
 cache: 
-#  - C:\cmake-3.17.0
+  - C:\cmake-3.17.0
 
 build_script:
 - ps: .\build.ps1
-
-
-#       move ..\..\cmake-3.17.0\cmake-3.17.0-win64-x64\bin ..\..\cmake-3.17.0
-#       move ..\..\cmake-3.17.0\cmake-3.17.0-win64-x64\share ..\..\cmake-3.17.0
-#       move ..\..\cmake-3.17.0\cmake-3.17.0-win64-x64\man ..\..\cmake-3.17.0
-#       move ..\..\cmake-3.17.0\cmake-3.17.0-win64-x64\doc ..\..\cmake-3.17.0
