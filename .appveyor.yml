@@ -23,7 +23,7 @@ install:
      cmake --version
 
 cache: 
-  - C:\cmake-3.17.0
+#  - C:\cmake-3.17.0
 
 build_script:
 - ps: .\build.ps1
