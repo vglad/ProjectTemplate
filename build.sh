@@ -6,8 +6,8 @@ print_help()
   echo "  Usage: `basename $0` [[[--build_type [debug|release]] [--compiler [gcc|clang-8]] [--skip_tests] | [-h]]"
   echo
   echo "  -h, --help       Show help"
-  echo "  --build_type     Can be one of [debug, release], default=debug"
-  echo "  --compiler       Can be one of [gcc, clang-8], default=gcc"
+  echo "  --build_type     Can be one of [debug|release], default=release"
+  echo "  --compiler       Can be one of [gcc|clang-8], default=gcc"
   echo "  --skip_tests     Do not build tests"
   exit 1
 }

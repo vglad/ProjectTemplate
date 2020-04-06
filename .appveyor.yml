@@ -13,7 +13,6 @@ platform:
   - x32
 
 install:
-
 -  ps: |
 
      if (![IO.File]::Exists("C:\cmake-3.17.0\bin\cmake.exe")) {
@@ -31,7 +30,8 @@ cache:
   - C:\cmake-3.17.0
 
 build_script:
--  mkdir cmake-build
--  cd cmake-build
--  cmake -G Ninja -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON ..
--  cmake --build .
+  -  .\build.ps1
+  #-  mkdir cmake-build
+  #-  cd cmake-build
+  #-  cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON ..
+  #-  cmake --build .
