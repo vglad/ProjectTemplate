@@ -3,7 +3,7 @@
 
 # ProjectTemplate
 Template for cross-platform C++ project.<br/>
-CMake 3.17.0 is a build system
+CMake 3.17.0 is a build system.
 
 Catch2 and Trompeloeil used as testing frameworks.
 
