@@ -8,4 +8,4 @@ CMake 3.17.0 is a build system.
 Catch2 and Trompeloeil used as testing frameworks.
 
 Travis integration using CentOS 8 docker image with GCC 9 or Clang 8.<br/>
-AppVeyor integration using VS2019 and VS2017, x64 and x86 images with bundled Clang 9 compiler.
+AppVeyor integration using VS2019 and VS2017, x64 images with MSVC compiler.
