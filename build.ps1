@@ -11,10 +11,10 @@
     .\build.ps1
     To build "Release" configuration and all tests
     .EXAMPLE
-    .\build.ps1 -BuildType debug -SkipTests
+    .\build.ps1 -BuildType Debug -SkipTests
     To build "Debug" configuration and skip tests building
     .EXAMPLE
-    .\build.ps1 -CMakePath C:\cmake-3.17.0\bin\cmake.exe -BuildType debug
+    .\build.ps1 -CMakePath C:\cmake-3.17.0\bin\cmake.exe -BuildType Debug
     To build "Debug" configuration and all tests using CMake 3.17.0
 #>
 
@@ -55,23 +55,11 @@ if ($SkipTests -eq $true) {
 & $VSPath'\VC\Auxiliary\Build\vcvarsall.bat' 'x64'
 
 # Setting CMake build variables
-#[String]$GeneratorPrefix = '-G'
-#[String]$GeneratorName   = 'Ninja'
-#[String]$GeneratorPath   = '-DCMAKE_MAKE_PROGRAM=' + $VSPath + `
-#                           '\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja\ninja.exe'
-
-#[String]$CXX_Compiler     = '-DCMAKE_CXX_COMPILER=' + $VSPath + `
-#                            '\VC\Tools\MSVC\14.25.28610\bin\Hostx64\x64\cl.exe'
-#[String]$C_Compiler       = '-DCMAKE_C_COMPILER=' + $VSPath + `
-#                            '\VC\Tools\MSVC\14.25.28610\bin\Hostx64\x64\cl.exe'
-
 [String]$BuildConfig     = '-DCMAKE_BUILD_TYPE=' + $BuildType
 [String]$BuildTests      = '-DSKIP_TESTS=' + $NoTests
 [String]$CMakeFilePath   = '..\..'
 
 # Configure CMake and build
-#[String[]]$arguments = @($GeneratorPrefix, $GeneratorName, $GeneratorPath,
-#$BuildConfig, $BuildTests, $CMakeFilePath)
 [String[]]$arguments = @($BuildConfig, $BuildTests, $CMakeFilePath)
 & $cmake @arguments
 
