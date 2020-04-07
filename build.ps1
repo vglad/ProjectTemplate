@@ -54,19 +54,16 @@ if ($SkipTests -eq $true) {
                       -latest -property installationPath)
 & $VSPath'\VC\Auxiliary\Build\vcvarsall.bat' 'x64'
 
-# Setting CMake build variables
-[String]$BuildConfig     = '-DCMAKE_BUILD_TYPE=' + $BuildType
+# Configure CMake and build
 [String]$BuildTests      = '-DSKIP_TESTS=' + $NoTests
 [String]$CMakeFilePath   = '..\..'
-
-# Configure CMake and build
-[String[]]$arguments = @($BuildConfig, $BuildTests, $CMakeFilePath)
+[String[]]$arguments     = @($BuildTests, $CMakeFilePath)
 & $cmake @arguments
 
-$arguments = @('--build', '.')
+$arguments = @('--build', '.', '--config', $BuildType)
 & $cmake @arguments
 
 # Run tests
 if ($SkipTests -ne $true) {
-  & $BuildDir'\test\Debug\tests.exe'
+  & $BuildDir'\test\'$BuildType'\tests.exe'
 }
