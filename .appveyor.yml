@@ -6,7 +6,9 @@ branches:
   only:
   - master
 
-configuration: Release
+configuration: 
+  - Release
+  - Debug
 
 platform:
   - x64
