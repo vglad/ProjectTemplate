@@ -1,17 +1,18 @@
-image:
+image:     
   - Visual Studio 2019
-  - Visual Studio 2017
 
 branches:
-  only:
-  - master
+  only:     
+    - master
+
+environment:
+  matrix:
+    - platform: x64
+      generator: Visual Studio 16 2019 Win64
+      fast_finish: true 
 
 configuration: 
-  - Release
-  - Debug
-
-platform:
-  - x64
+   - Release
 
 install:
 -  ps: |
