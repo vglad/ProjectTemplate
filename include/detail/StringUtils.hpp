@@ -6,21 +6,12 @@
 
 namespace detail {
 
-//*****************************************************************************
-// Text concatenation
-
-  template<typename T>
-  static std::string concat(const T & value) {
-    std::ostringstream tmp_str;
-    tmp_str << value;
-    return tmp_str.str();
-  }
-
-  template<typename T, typename ... Args>
-  static std::string concat(const T & value, const Args & ... args) {
-    return concat(value) + concat(args...);
-  }
-//*****************************************************************************
+  template<typename... T>
+    static std::string concat (T const & ... args) {
+      std::ostringstream os{};
+      (os << ... << args);
+      return os.str();
+    }
 
 }
 

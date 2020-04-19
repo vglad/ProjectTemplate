@@ -11,15 +11,14 @@ env:
 
 before_script:
   - docker pull ${IMAGE_NAME} || true
-  - export PROJECT_NAME=ProjectTemplate
-  - export PROJECT_DIR=/opt/dev/${PROJECT_NAME}
+  - export PROJECT_DIR=/opt/dev/${PWD##*/}
   - export BUILD_SCRIPT_NAME=build.sh
 
 script:
   - docker run -t
-      -e PROJECT_DIR=${PROJECT_DIR} -e COMPILER=${COMPILER}
-      -v ${TRAVIS_BUILD_DIR}:${PROJECT_DIR}
-      ${IMAGE_NAME} ${PROJECT_DIR}/${BUILD_SCRIPT_NAME}
+    -e PROJECT_DIR=${PROJECT_DIR} -e COMPILER=${COMPILER}
+    -v ${TRAVIS_BUILD_DIR}:${PROJECT_DIR}
+    ${IMAGE_NAME} ${PROJECT_DIR}/${BUILD_SCRIPT_NAME}
 
 notifications:
   email: false
