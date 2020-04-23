@@ -12,8 +12,8 @@ int main() {
     std::cout << l.addition(1, 41) << '\n';
     l.generate_throw();
   }
-  catch (std::exception const &) {
-     print_nested_exception();
+  catch (std::exception const & e) {
+    print_nested_exception(e);
   }
   return 0;
 }
