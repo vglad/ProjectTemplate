@@ -17,3 +17,10 @@ target_include_directories(tests PRIVATE
     ../include/lib
 )
 
+# Disable specific warning for Trompeloeil v37
+# Fixed in next Trompeloeil v38 release
+if ((CMAKE_CXX_COMPILER_ID MATCHES "Clang") OR (CMAKE_CXX_COMPILER_ID STREQUAL "GNU"))
+  target_compile_options(tests PRIVATE -Wno-deprecated-declarations)
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+  target_compile_options(tests PRIVATE /D_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING)
+endif ()

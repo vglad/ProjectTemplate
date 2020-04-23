@@ -5,7 +5,7 @@
 Template for cross-platform C++ project.<br/>
 CMake 3.17.0 is a build system.
 
-Catch2 and Trompeloeil used as testing frameworks.
+Catch2 and Trompeloeil used as testing and mocking frameworks.
 
 Travis integration using CentOS 8 docker image with GCC 9 or Clang 8.<br/>
-AppVeyor integration using VS2019 image with MSVC_x64 compiler.
+AppVeyor integration using Visual Studio 2019 image with MSVC_x64 and Clang 10 compilers.
