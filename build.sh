@@ -41,7 +41,7 @@ case ${BUILD_TYPE} in
 esac
 
 # Set project directories
-PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" || return 1 >/dev/null 2>&1 && pwd )"
 BUILD_DIR=${PROJECT_DIR}/build/cmake-build-${BUILD_TYPE}
 [[ ! -d "${BUILD_DIR}" ]] && ( mkdir -p ${BUILD_DIR} || return 1 )
 
@@ -54,7 +54,7 @@ case ${COMPILER} in
 esac
 
 # Set compiler flags
-COMPILER_FLAGS="-Wall -Wextra -Wpedantic -Werror"
+COMPILER_FLAGS="-Wall -Wextra -Wpedantic -pedantic-errors -Werror"
 
 cd ${BUILD_DIR} || return 1
 cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \

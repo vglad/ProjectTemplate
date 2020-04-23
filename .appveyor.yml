@@ -2,28 +2,33 @@ branches:
   only:
     - master
 
-configuration:
-  - Release
-
 environment:
   matrix:
-    - platform: x64
-      generator: Visual Studio 16 2019 Win64
+    - configuration: Clang
+      platform: x64
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
       fast_finish: true
 
-install:
-  - ps: |
-      if (![IO.File]::Exists("C:\cmake-3.17.0\bin\cmake.exe")) {
-       Start-FileDownload 'https://github.com/Kitware/CMake/releases/download/v3.17.0/cmake-3.17.0-win64-x64.zip'
-       7z x -y cmake-3.17.0-win64-x64.zip -oC:\cmake-3.17.0
-       Get-ChildItem "..\..\cmake-3.17.0\cmake-3.17.0-win64-x64" -Recurse | Move-Item -Destination "..\..\cmake-3.17.0"
-      }
-      $env:PATH="C:\cmake-3.17.0\bin;$env:PATH"
-      cmake --version
-
-cache:
-  - C:\cmake-3.17.0
+    - configuration: MSVC
+      platform: x64
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      fast_finish: true
 
 build_script:
-  - ps: .\build.ps1
+  - ps: |
+      .\build.ps1 -Compiler Clang
+test_script:
+  - ps: |
+      .\test\tests.exe
+
+
+for:
+  - matrix:
+      only:
+        - configuration: MSVC
+    build_script:
+      - ps: |
+          .\build.ps1 -Compiler MSVC
+    test_script:
+      - ps: |
+          .\test\Release\tests.exe

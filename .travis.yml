@@ -3,6 +3,10 @@ language: cpp
 os: linux
 dist: xenial
 
+branches:
+  only:
+    - master
+
 services:
   - docker
 env:
